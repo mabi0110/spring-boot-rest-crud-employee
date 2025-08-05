@@ -20,12 +20,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void save(Employee employee) {
-
+        em.persist(employee);
     }
 
     @Override
     public Employee findById(int id) {
-        return null;
+        return em.find(Employee.class, id);
     }
 
     @Override
@@ -36,11 +36,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void deleteById(int id) {
-
+        Employee employeeDB = em.find(Employee.class, id);
+        em.remove(employeeDB);
     }
 
     @Override
     public void update(Employee employee) {
-
+        em.merge(employee);
     }
 }
